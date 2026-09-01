@@ -111,6 +111,19 @@ class ArbolBinarioDinamico:
                 p.set_dato(elemento)
                 ant.set_enlace_izq(p)
 
+    def buscar(self,elemento):
+        nodo = self.raiz
+        while nodo is not None:
+            if nodo.get_dato() == elemento:
+                return True
+            elif elemento > nodo.get_dato():
+                nodo = nodo.get_enlace_der()
+            elif elemento < nodo.get_dato():
+                nodo = nodo.get_enlace_izq()
+            else:
+                return False
+        return False
+
     def mostrar(self, p, nivel=0):
         """
         Muestra el árbol de forma vertical.
@@ -124,6 +137,45 @@ class ArbolBinarioDinamico:
             print("    " * nivel + str(p.get_dato()))
             self.mostrar(p.get_enlace_izq(), nivel + 1)
 
+    def es_hoja(self, nodo):
+        if nodo is None:
+            return False
+        return nodo.get_enlace_izq() is None and nodo.get_enlace_der() is None
+
+    def _inorden_recursivo(self,nodo):
+        if nodo is None:
+            return
+        self._inorden_recursivo(nodo.get_enlace_izq())
+        print(nodo.get_dato())
+        self._inorden_recursivo(nodo.get_enlace_der())
+
+    def inorden(self):
+        self._inorden_recursivo(self.raiz)
+
+    def _preorden_rec(self,nodo,lista):
+        if nodo is None:
+            return
+        lista.append(nodo.get_dato())
+        self._preorden_rec(nodo.get_enlace_izq(), lista)
+        self._preorden_rec(nodo.get_enlace_der(), lista)
+
+    def preorden(self):
+        lista = []
+        self._preorden_rec(self.raiz,lista)
+        return lista
+
+    def _postorden_rec(self, nodo:Nodo, lista:list):
+        if nodo is None:
+            return
+        self._postorden_rec(nodo.get_enlace_izq(), lista)
+        self._postorden_rec(nodo.get_enlace_der(), lista)
+        lista.append(nodo.get_dato())   
+
+    def postorden(self):
+        lista = []
+        self._postorden_rec(self.raiz,lista)
+        return lista
+
 
 if __name__ == "__main__":
     arbol = ArbolBinarioDinamico()
@@ -135,12 +187,23 @@ if __name__ == "__main__":
     arbol.insertar(15)
     arbol.mostrar(arbol.raiz)
 
-    arbol = ArbolBinarioEstatico()
+    """arbol = ArbolBinarioEstatico()
     arbol.insertar(8)
     arbol.insertar(4)
     arbol.insertar(12)
     arbol.insertar(2)
     arbol.insertar(6)
     arbol.insertar(15)
-    arbol.mostrar()
+    arbol.mostrar()"""
+    arbol.inorden()
+    lista_preorden = arbol.preorden()
+    print(lista_preorden)
+    lista_postorden = arbol.postorden()
+    print(lista_postorden)
+    busqueda_elemento = arbol.buscar(2)
+    print(busqueda_elemento)
+    busqueda_elemento = arbol.buscar(11)
+    print(busqueda_elemento)
+
     """https://colab.research.google.com/drive/1Wh-cv2ueWb_Zztuh1m2j6BQbBJkuY7L_?usp=drive_link"""
+    """https://github.com/EstebanChavez21/ED2/blob/Unidad-1---ABB/Unidad%201/ABB/Di%C3%A1mico%20y%20Est%C3%A1tico"""
