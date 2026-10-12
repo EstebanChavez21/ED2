@@ -90,26 +90,3 @@ class ControladorJuego:
 
         #reiniciar vista tamnboien
         self.vista.reiniciar_vista(self.modelo)
-
-if __name__ == "__main__":
-    import sys
-    import os
-    sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-    from vista.gui_vista import VistaGui
-
-    modelo = ModeloJuego()
-    vista = VistaGui()
-
-    # Agentes falsos para que no falle el constructor
-    class AgenteFalso:
-        def __init__(self):
-            self.nodos_explorados = 0
-        def get_best_move(self, modelo):
-            return 0
-        def predict(self, modelo):
-            return 0
-
-    controlador = ControladorJuego(modelo, vista, AgenteFalso(), AgenteFalso())
-    controlador.modo = 'H vs H'  # forzamos HH para probar sin agentes
-    controlador.iniciar()
