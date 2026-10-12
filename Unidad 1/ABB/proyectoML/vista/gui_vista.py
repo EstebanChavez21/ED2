@@ -1,7 +1,4 @@
 import customtkinter as ctk
-#import sys
-#import os
-#sys.path.append(os.path.dirname(os.path.dirname(os.path.#abspath(__file__))))
 
 class VistaGui:
     def __init__(self):
@@ -178,38 +175,3 @@ class VistaGui:
         self.limpiar_resultado()
         self.habilitar_botones(True)
     #
-
-"""
-if __name__ == '__main__':
-    from modelo.game_model import ModeloJuego
-    
-    vista = VistaGui()
-
-    modelo = ModeloJuego()
-    # Simulamos un controlador mínimo para probar la vista
-    class ControladorFalso:
-        def manejar_clic(self, pos):
-            print(f"Clic en {pos}")
-
-        def cambiar_modo(self, modo):
-            print(f"Modo cambiado a {modo}")
-
-        def reiniciar_partida(self):
-            print("Reiniciar pulsado")
-
-    vista.controlador = ControladorFalso()
-
-    # Probamos los métodos de actualización
-    vista.actualizar_turno("O")
-    vista.actualizar_metricas(1234, 45)
-    vista.mostrar_resultado("X")
-
-    # Simulamos algunas fichas en el tablero
-    modelo.hacer_movimiento(0, 'X')
-    modelo.hacer_movimiento(4, 'O')
-    modelo.hacer_movimiento(8, 'X')
-    vista.actualizar_tablero(modelo)
-
-    vista.ventana.mainloop()
-
-"""
