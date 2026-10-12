@@ -104,26 +104,3 @@ class ModeloJuego:
         for fila in self.tablero:
             lineas.append(' | '.join(fila))
         return '\n--------\n'.join(lineas)
-
-if __name__ == "__main__":
-    juego = ModeloJuego()
-  
-    #prueba del juego total
-    """
-    juego = ModeloJuego()
-    jugadas = [
-        (4, 'X'), (0, 'O'), (8, 'X'), (2, 'O'), (6, 'X'),
-        (7, 'X'), (1, 'O')]
-
-    for pos, jug in jugadas:
-        if juego.juego_terminado:
-            break
-        exito = juego.hacer_movimiento(pos, jug)
-        print(f"{jug} juega en {pos}: {exito}")
-        print(juego)
-        if juego.verificar_fin_del_juego():
-            print(f"Gano {juego.ganador}" if juego.ganador else "Empate")
-            break
-
-    print("Array final:", juego.to_array())
-    """
